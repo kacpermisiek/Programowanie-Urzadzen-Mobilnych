@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PhysicsQuizJava</string>
+    <string name="trueString">TRUE</string>
+    <string name="falseString">FALSE</string>
+    <string name="correct_answer">CORRECT</string>
+    <string name="next">NEXT</string>
+    <string name="incorrect_answer">INCORRECT</string>
+
+    <string name="question1">Was relative theory created by Isaac Newton?</string>
+    <string name="question2">Can a fire have a shadow?</string>
+    <string name="question3">Can air make shadows?</string>
+</resources>
