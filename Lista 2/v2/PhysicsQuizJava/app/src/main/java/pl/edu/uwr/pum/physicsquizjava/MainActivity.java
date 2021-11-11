@@ -186,5 +186,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + searchTerm)));
     }
 
+    public void onShowCorrectAnswer(View view) {
+        boolean tmp = questions[actualId].getCorrectAnswer();
+        makeToast(Boolean.toString(tmp));
+    }
 }
 
