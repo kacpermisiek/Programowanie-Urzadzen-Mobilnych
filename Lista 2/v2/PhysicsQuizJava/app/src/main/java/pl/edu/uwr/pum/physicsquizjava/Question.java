@@ -22,7 +22,6 @@ public class Question {
 
     public void setAnswer(boolean answer) {
         this.answer = answer;
-        // this.answered_whenever = true;
     }
 
 }

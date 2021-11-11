@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
 
-    private final Question[] questions = new Question[]{
+    private final static Question[] questions = new Question[]{
             new Question(R.string.question1, true),
             new Question(R.string.question2, false),
             new Question(R.string.question3, true),
@@ -60,7 +60,12 @@ public class MainActivity extends AppCompatActivity {
             quantity_of_answered_questions = savedInstanceState.getInt("quantity_of_answered_questions_state");
             iterator = savedInstanceState.getInt("iterator_state");
             actualId = savedInstanceState.getInt("actualId_state");
+            score.correct_answers = savedInstanceState.getInt("correctAnswers_state");
+            score.incorrect_answers = savedInstanceState.getInt("incorrectAnswers_state");
+            score.cheated_answers = savedInstanceState.getInt("cheatedAnswers_state");
+            answeredQuestions = savedInstanceState.getIntegerArrayList("answeredQuestions_state");
         }
+
         searchButtons();
         textView = findViewById(R.id.question_text);
         context = getApplicationContext();
@@ -74,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt("quantity_of_answered_questions_state", quantity_of_answered_questions);
         outState.putInt("iterator_state", iterator);
         outState.putInt("actualId_state", actualId);
-
+        outState.putInt("correctAnswers_state", score.correct_answers);
+        outState.putInt("incorrectAnswers_state", score.incorrect_answers);
+        outState.putInt("cheatedAnswers_state", score.cheated_answers);
+        outState.putIntegerArrayList("answeredQuestions_state", answeredQuestions);
     }
 
     @Override
@@ -87,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
     public void prevQuestion(View view) {
         iterator += 1;
         if (iterator > questions.length) { iterator = 1; }
-        toast.cancel();
+        // toast.cancel();
         changeQuestion();
     }
 
     public void nextQuestion(View view) {
         iterator -= 1;
         if (iterator <= 0) { iterator = questions.length; }
-        toast.cancel();
+        // toast.cancel();
         changeQuestion();
     }
 
