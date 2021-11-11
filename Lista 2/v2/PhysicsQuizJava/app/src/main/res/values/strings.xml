@@ -13,7 +13,7 @@
     <string name="cheat">CHEAT</string>
     <string name="reset">RESET</string>
     <string name="showAnswer">SHOW CORRECT ANSWER</string>
-
+    <string name="searchAnswer">Search answer</string>
 
 
     <string name="question1">Are you all right?</string>

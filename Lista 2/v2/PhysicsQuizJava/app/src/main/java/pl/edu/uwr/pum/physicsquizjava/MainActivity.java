@@ -1,10 +1,12 @@
 package pl.edu.uwr.pum.physicsquizjava;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     String answer;
 
     Context context;
-    CharSequence text_info;
     Toast toast;
     int duration = Toast.LENGTH_SHORT;
 
@@ -50,14 +51,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         searchButtons();
         textView = findViewById(R.id.question_text);
-
         context = getApplicationContext();
-
         changeQuestion();
+        if(savedInstanceState != null){
+            quantity_of_answered_questions = savedInstanceState.getInt("quantity_of_answered_questions_state");
+            iterator = savedInstanceState.getInt("iterator_state");
+            actualId = savedInstanceState.getInt("actualId_state");
+        }
+    }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("quantity_of_answered_questions_state", quantity_of_answered_questions);
+        outState.putInt("iterator_state", iterator);
+        outState.putInt("actualId_state", actualId);
 
     }
 
@@ -167,7 +178,12 @@ public class MainActivity extends AppCompatActivity {
         button_true = findViewById(R.id.true_button);
         button_false = findViewById(R.id.false_button);
         button_cheat = findViewById(R.id.cheat_button);
-        button_showAnswer = findViewById(R.id.showAnswer_button);
+        button_showAnswer = findViewById(R.id.button_showAnswer);
+    }
+
+    public void SearchAnswer(View view) {
+        String searchTerm = textView.getText().toString();
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + searchTerm)));
     }
 
 }
