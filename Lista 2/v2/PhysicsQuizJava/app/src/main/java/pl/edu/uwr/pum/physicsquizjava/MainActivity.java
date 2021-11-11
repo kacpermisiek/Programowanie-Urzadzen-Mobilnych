@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     private void changeQuestion(){
         actualId = questions.length - iterator;
 
-        if (questions[actualId].getAnswered())
+        if (answeredQuestions.contains(actualId))
         {
             button_true.setEnabled(false);
             button_false.setEnabled(false);
@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
             makeToast("Wrong answer!");
         }
 
+        answeredQuestions.add(actualId);
         changeQuestion();
         quantity_of_answered_questions += 1;
         checkEndOfGame();
@@ -164,9 +165,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickReset(View view) {
-        for (Question q : questions) {
-            q.setAnswered(false);
-        }
+        answeredQuestions.clear();
         score = new Score(questions);
         quantity_of_answered_questions = 0;
         actualId = 0;
