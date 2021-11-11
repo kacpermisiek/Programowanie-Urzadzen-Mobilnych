@@ -16,10 +16,10 @@
     <string name="searchAnswer">Search answer</string>
 
 
-    <string name="question1">Are you all right?</string>
-    <string name="question2">Is it OK with you?</string>
-    <string name="question3">Can you touch the correct button?</string>
-    <string name="question4">4</string>
-    <string name="question5">5</string>
+    <string name="question1">1 pytanie</string>
+    <string name="question2">2 pytanie</string>
+    <string name="question3">3 pytanie</string>
+    <string name="question4">4 pytanie</string>
+    <string name="question5">5 pytanie</string>
 
 </resources>

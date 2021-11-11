@@ -11,28 +11,16 @@ import android.widget.TextView;
 
 public class CheatActivity extends AppCompatActivity {
 
-    Button cheat_button;
-    TextView textViewCheat;
-    boolean correct_answer;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
-        cheat_button = findViewById(R.id.showAnswerCheatActivity);
-
-        textViewCheat = findViewById(R.id.textViewCheat);
 
         Intent intent = getIntent();
-        correct_answer = intent.getBooleanExtra(MainActivity.EXTRA_MESSAGE, false);
-
-
-
+        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        TextView textViewCheat = findViewById(R.id.textViewCheat);
+        textViewCheat.setText(message);
     }
 
-    @SuppressLint("SetTextI18n")
-    public void cheatActivityShowAnswer(View view) {
-        textViewCheat.setText("Correct answer is: " + correct_answer);
-    }
 }

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Toast toast;
     int duration = Toast.LENGTH_SHORT;
 
-
+    private static
 
 
     private TextView textView;
@@ -74,27 +74,30 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt("quantity_of_answered_questions_state", quantity_of_answered_questions);
         outState.putInt("iterator_state", iterator);
         outState.putInt("actualId_state", actualId);
+        outState.putInt("correctAnswers_state", score.correct_answers);
+        outState.putInt("incorrectAnswers_state", score.incorrect_answers);
+
 
     }
 
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        textView.setText(questions[actualId].getTextId());
-        changeQuestion();
-    }
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        textView.setText(questions[actualId].getTextId());
+//        changeQuestion();
+//    }
 
     public void prevQuestion(View view) {
         iterator += 1;
         if (iterator > questions.length) { iterator = 1; }
-        toast.cancel();
+        // toast.cancel();
         changeQuestion();
     }
 
     public void nextQuestion(View view) {
         iterator -= 1;
         if (iterator <= 0) { iterator = questions.length; }
-        toast.cancel();
+        // toast.cancel();
         changeQuestion();
     }
 
@@ -152,15 +155,11 @@ public class MainActivity extends AppCompatActivity {
         textViewScore.setText(result);
     }
 
-    @SuppressLint("SetTextI18n")
     public void onClickCheat(View view) {
-
-        score.cheated_answers += 1;
+        String messageToSend = Boolean.toString(questions[actualId].getCorrectAnswer());
         Intent intent = new Intent(this, CheatActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, questions[actualId].getCorrectAnswer());
+        intent.putExtra(EXTRA_MESSAGE, messageToSend);
         startActivity(intent);
-        changeQuestion();
-
     }
 
     public void onClickReset(View view) {
