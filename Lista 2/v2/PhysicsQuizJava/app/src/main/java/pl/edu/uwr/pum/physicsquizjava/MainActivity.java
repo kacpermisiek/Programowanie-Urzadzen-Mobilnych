@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "pl.edu.uwr.pum.physicsquizjava.MESSAGE";
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     private TextView textView;
 
     private final Question[] questions = new Question[]{
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     Score score = new Score(questions);
+    ArrayList<Integer> answeredQuestions = new ArrayList<>(questions.length);
 
     private int iterator = questions.length;
     private int actualId = 0;
@@ -51,15 +55,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        searchButtons();
-        textView = findViewById(R.id.question_text);
-        context = getApplicationContext();
-        changeQuestion();
+
         if(savedInstanceState != null){
             quantity_of_answered_questions = savedInstanceState.getInt("quantity_of_answered_questions_state");
             iterator = savedInstanceState.getInt("iterator_state");
             actualId = savedInstanceState.getInt("actualId_state");
         }
+        searchButtons();
+        textView = findViewById(R.id.question_text);
+        context = getApplicationContext();
+        changeQuestion();
     }
 
     @Override
@@ -72,15 +77,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        textView.setText(questions[actualId].getTextId());
+        changeQuestion();
+    }
+
     public void prevQuestion(View view) {
         iterator += 1;
         if (iterator > questions.length) { iterator = 1; }
+        toast.cancel();
         changeQuestion();
     }
 
     public void nextQuestion(View view) {
         iterator -= 1;
         if (iterator <= 0) { iterator = questions.length; }
+        toast.cancel();
         changeQuestion();
     }
 
@@ -114,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
         if(questions[actualId].getAnswer() == questions[actualId].getCorrectAnswer()){
             score.correct_answers += 1;
             makeToast("Correct answer!");
-
         }
         else {
             score.incorrect_answers += 1;
@@ -122,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         changeQuestion();
-
         quantity_of_answered_questions += 1;
         checkEndOfGame();
     }
@@ -144,11 +156,9 @@ public class MainActivity extends AppCompatActivity {
     public void onClickCheat(View view) {
 
         score.cheated_answers += 1;
-
         Intent intent = new Intent(this, CheatActivity.class);
         intent.putExtra(EXTRA_MESSAGE, questions[actualId].getCorrectAnswer());
         startActivity(intent);
-
         changeQuestion();
 
     }
