@@ -2,8 +2,6 @@ package pl.edu.uwr.pum.physicsquizjava;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,12 +14,13 @@ public class CheatActivity extends AppCompatActivity {
     private TextView textViewCheat;
     private String message;
     private Button showAnswerButton;
+    private boolean showed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
-
+        showed = false;
         showAnswerButton = findViewById(R.id.showAnswerCheatActivityButton);
 
         Intent intent = getIntent();
@@ -29,9 +28,22 @@ public class CheatActivity extends AppCompatActivity {
         textViewCheat = findViewById(R.id.textViewCheat);
 
 
+        if(savedInstanceState != null){
+            message = savedInstanceState.getString("message_state");
+            showed = savedInstanceState.getBoolean("showed_state");
+            if (showed) { textViewCheat.setText(message); }
+        }
+
+        if (showed){ showAnswerButton.setVisibility(View.INVISIBLE); }
+        else { showAnswerButton.setVisibility(View.VISIBLE); }
     }
 
-
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("message_state", message);
+        outState.putBoolean("showed_state", showed);
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -43,6 +55,7 @@ public class CheatActivity extends AppCompatActivity {
     }
 
     public void cheatActivityShowAnswer(View view) {
+        showed = true;
         MainActivity.cheated_answers += 1;
         showAnswerButton.setVisibility(View.INVISIBLE);
         textViewCheat.setText(message);

@@ -1,6 +1,7 @@
 package pl.edu.uwr.pum.physicsquizjava;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -89,24 +90,15 @@ public class MainActivity extends AppCompatActivity {
         outState.putIntegerArrayList("answeredQuestions_state", answeredQuestions);
     }
 
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        textView.setText(questions[actualId].getTextId());
-        changeQuestion();
-    }
-
     public void prevQuestion(View view) {
         iterator += 1;
         if (iterator > questions.length) { iterator = 1; }
-        // toast.cancel();
         changeQuestion();
     }
 
     public void nextQuestion(View view) {
         iterator -= 1;
         if (iterator <= 0) { iterator = questions.length; }
-        // toast.cancel();
         changeQuestion();
     }
 
@@ -207,8 +199,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onShowCorrectAnswer(View view) {
-        boolean tmp = questions[actualId].getCorrectAnswer();
-        // makeToast(Boolean.toString(tmp));
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setCancelable(true);
+        builder.setTitle("Correct Answer");
+        builder.setMessage(Boolean.toString(questions[actualId].getCorrectAnswer()));
+
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.cancel());
+        builder.show();
     }
 
 
@@ -218,7 +215,6 @@ public class MainActivity extends AppCompatActivity {
         else {
             score = ((correct_answers / (float) questions.length) * 100) - (15 * cheated_answers);
         }
-
         if (score < 0) { score = 0; }
 
         return score;
@@ -232,8 +228,6 @@ public class MainActivity extends AppCompatActivity {
                 incorrect_answers,
                 cheated_answers,
                 getScore());
-
-
         return info;
     }
 }
