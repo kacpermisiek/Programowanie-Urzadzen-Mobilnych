@@ -10,7 +10,7 @@
         android:id="@+id/textViewCheat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/correct_answer"
+        android:text="The answer is"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/showAnswerCheatActivity"
+        android:id="@+id/showAnswerCheatActivityButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cheat"

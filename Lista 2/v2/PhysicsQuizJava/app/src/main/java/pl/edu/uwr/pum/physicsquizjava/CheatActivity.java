@@ -1,38 +1,51 @@
 package pl.edu.uwr.pum.physicsquizjava;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class CheatActivity extends AppCompatActivity {
 
-    Button cheat_button;
-    TextView textViewCheat;
-    boolean correct_answer;
-
+    private TextView textViewCheat;
+    private String message;
+    private Button showAnswerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
-        cheat_button = findViewById(R.id.showAnswerCheatActivity);
 
-        textViewCheat = findViewById(R.id.textViewCheat);
+        showAnswerButton = findViewById(R.id.showAnswerCheatActivityButton);
 
         Intent intent = getIntent();
-        correct_answer = intent.getBooleanExtra(MainActivity.EXTRA_MESSAGE, false);
-
+        message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        textViewCheat = findViewById(R.id.textViewCheat);
 
 
     }
 
-    @SuppressLint("SetTextI18n")
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public void cheatActivityShowAnswer(View view) {
-        textViewCheat.setText("Correct answer is: " + correct_answer);
+        MainActivity.cheated_answers += 1;
+        showAnswerButton.setVisibility(View.INVISIBLE);
+        textViewCheat.setText(message);
+
     }
 }
