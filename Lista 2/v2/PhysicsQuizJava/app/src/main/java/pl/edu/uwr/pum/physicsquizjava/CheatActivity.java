@@ -13,14 +13,16 @@ import android.widget.TextView;
 
 public class CheatActivity extends AppCompatActivity {
 
+
     private TextView textViewCheat;
     private String message;
-    private Button showAnswerButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
+
 
         showAnswerButton = findViewById(R.id.showAnswerCheatActivityButton);
 
@@ -48,4 +50,5 @@ public class CheatActivity extends AppCompatActivity {
         textViewCheat.setText(message);
 
     }
+
 }
