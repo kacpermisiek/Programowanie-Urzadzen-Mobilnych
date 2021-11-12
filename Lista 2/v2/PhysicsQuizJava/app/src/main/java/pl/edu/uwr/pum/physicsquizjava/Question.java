@@ -24,5 +24,4 @@ public class Question {
         this.answer = answer;
     }
 
-
 }

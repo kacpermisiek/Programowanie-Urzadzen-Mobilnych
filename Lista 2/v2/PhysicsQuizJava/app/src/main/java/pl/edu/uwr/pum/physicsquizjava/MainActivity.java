@@ -24,19 +24,21 @@ public class MainActivity extends AppCompatActivity {
     Button button_cheat;
     Button button_showAnswer;
 
-    int quantity_of_answered_questions = 0;
+    int quantity_of_answered_questions;
     String answer;
 
     Context context;
     Toast toast;
     int duration = Toast.LENGTH_SHORT;
 
-    private static
+
+    public static int correct_answers, incorrect_answers, cheated_answers;
+
 
 
     private TextView textView;
 
-    private final Question[] questions = new Question[]{
+    private final static Question[] questions = new Question[]{
             new Question(R.string.question1, true),
             new Question(R.string.question2, false),
             new Question(R.string.question3, true),
@@ -44,23 +46,31 @@ public class MainActivity extends AppCompatActivity {
             new Question(R.string.question5, true),
     };
 
-    Score score = new Score(questions);
     ArrayList<Integer> answeredQuestions = new ArrayList<>(questions.length);
 
-    private int iterator = questions.length;
-    private int actualId = 0;
+    private int iterator;
+    private int actualId;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        quantity_of_answered_questions = 0;
+        iterator = questions.length;
+        actualId = 0;
+
 
         if(savedInstanceState != null){
             quantity_of_answered_questions = savedInstanceState.getInt("quantity_of_answered_questions_state");
             iterator = savedInstanceState.getInt("iterator_state");
             actualId = savedInstanceState.getInt("actualId_state");
+            correct_answers = savedInstanceState.getInt("correctAnswers_state");
+            incorrect_answers = savedInstanceState.getInt("incorrectAnswers_state");
+            cheated_answers = savedInstanceState.getInt("cheatedAnswers_state");
+            answeredQuestions = savedInstanceState.getIntegerArrayList("answeredQuestions_state");
         }
+
         searchButtons();
         textView = findViewById(R.id.question_text);
         context = getApplicationContext();
@@ -74,8 +84,12 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt("quantity_of_answered_questions_state", quantity_of_answered_questions);
         outState.putInt("iterator_state", iterator);
         outState.putInt("actualId_state", actualId);
-        outState.putInt("correctAnswers_state", score.correct_answers);
-        outState.putInt("incorrectAnswers_state", score.incorrect_answers);
+
+        outState.putInt("correctAnswers_state", correct_answers);
+        outState.putInt("incorrectAnswers_state", incorrect_answers);
+        outState.putInt("cheatedAnswers_state", cheated_answers);
+        outState.putIntegerArrayList("answeredQuestions_state", answeredQuestions);
+    }
 
 
     }
@@ -104,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     private void changeQuestion(){
         actualId = questions.length - iterator;
 
-        if (questions[actualId].getAnswered())
+        if (answeredQuestions.contains(actualId))
         {
             button_true.setEnabled(false);
             button_false.setEnabled(false);
@@ -129,14 +143,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(questions[actualId].getAnswer() == questions[actualId].getCorrectAnswer()){
-            score.correct_answers += 1;
+            correct_answers += 1;
             makeToast("Correct answer!");
         }
         else {
-            score.incorrect_answers += 1;
+            incorrect_answers += 1;
             makeToast("Wrong answer!");
         }
 
+        answeredQuestions.add(actualId);
         changeQuestion();
         quantity_of_answered_questions += 1;
         checkEndOfGame();
@@ -151,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     private void endOfGame() {
         setContentView(R.layout.score);
         TextView textViewScore = findViewById(R.id.textViewScore);
-        String result = score.showScore();
+        String result = showScore();
         textViewScore.setText(result);
     }
 
@@ -163,12 +178,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickReset(View view) {
-        for (Question q : questions) {
-            q.setAnswered(false);
-        }
-        score = new Score(questions);
+        answeredQuestions.clear();
+        cheated_answers = 0;
+        correct_answers = 0;
+        incorrect_answers = 0;
         quantity_of_answered_questions = 0;
         actualId = 0;
+
 
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.question_text);
@@ -197,7 +213,33 @@ public class MainActivity extends AppCompatActivity {
 
     public void onShowCorrectAnswer(View view) {
         boolean tmp = questions[actualId].getCorrectAnswer();
-        makeToast(Boolean.toString(tmp));
+        // makeToast(Boolean.toString(tmp));
+    }
+
+
+    private float getScore(){
+        float score;
+        if (questions.length < 1){ score = 0; }
+        else {
+            score = ((correct_answers / (float) questions.length) * 100) - (15 * cheated_answers);
+        }
+
+        if (score < 0) { score = 0; }
+
+        return score;
+    }
+
+
+    public String showScore(){
+
+        @SuppressLint("DefaultLocale") String info = String.format("Correct answer: %d \nIncorrect answer: %d \nCheated answer: %d \n Score:%.0f percent",
+                correct_answers,
+                incorrect_answers,
+                cheated_answers,
+                getScore());
+
+
+        return info;
     }
 }
 
