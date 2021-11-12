@@ -11,16 +11,22 @@ import android.widget.TextView;
 
 public class CheatActivity extends AppCompatActivity {
 
+
     private TextView textViewCheat;
     private String message;
+
     private Button showAnswerButton;
     private boolean showed;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
+
         showed = false;
+
         showAnswerButton = findViewById(R.id.showAnswerCheatActivityButton);
 
         Intent intent = getIntent();
@@ -61,4 +67,5 @@ public class CheatActivity extends AppCompatActivity {
         textViewCheat.setText(message);
 
     }
+
 }

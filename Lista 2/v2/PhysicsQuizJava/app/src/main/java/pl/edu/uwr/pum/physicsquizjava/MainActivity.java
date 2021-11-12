@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Toast toast;
     int duration = Toast.LENGTH_SHORT;
 
+
     public static int correct_answers, incorrect_answers, cheated_answers;
 
 
@@ -84,11 +85,13 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt("quantity_of_answered_questions_state", quantity_of_answered_questions);
         outState.putInt("iterator_state", iterator);
         outState.putInt("actualId_state", actualId);
+
         outState.putInt("correctAnswers_state", correct_answers);
         outState.putInt("incorrectAnswers_state", incorrect_answers);
         outState.putInt("cheatedAnswers_state", cheated_answers);
         outState.putIntegerArrayList("answeredQuestions_state", answeredQuestions);
     }
+
 
     public void prevQuestion(View view) {
         iterator += 1;
