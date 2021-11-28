@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">RecyclerViewWordListJava</string>
+
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+
+
+    <string name="crime_name">Crime #0</string>
+    <string name="crime_date">01.01.2021</string>
+
+    <string name="setTitle">Set Title</string>
+    <string name="setDate">Set Date</string>
+    <string name="setSolved">Set Solved</string>
+    <string name="deleteCrime">Delete this crime</string>
+
+</resources>
