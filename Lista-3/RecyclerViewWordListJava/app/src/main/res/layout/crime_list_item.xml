@@ -13,13 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:text="@string/title"/>
+            
 
             <TextView
                 android:id="@+id/crime"
@@ -36,12 +30,6 @@
             android:orientation="horizontal"
             android:layout_marginBottom="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:text="@string/date"/>
 
             <TextView
                 android:id="@+id/date"

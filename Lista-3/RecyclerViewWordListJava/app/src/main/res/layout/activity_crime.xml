@@ -25,13 +25,14 @@
         android:inputType="textCapSentences|textAutoCorrect"
         android:autofillHints="Set your title" />
 
-    <TextView
-        android:id="@+id/set_date"
-        android:layout_width="wrap_content"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/setDate"
-        android:textSize="20sp"
-        android:layout_margin="10dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/set_solved"
@@ -47,5 +48,7 @@
         android:layout_margin="10sp"
         android:text="@string/deleteCrime"
         android:onClick="delete_crime"/>
+
+
 
 </LinearLayout>

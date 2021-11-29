@@ -30,7 +30,8 @@ public class Crime {
 
     public void setId(int mId) { this.mId = mId; }
 
-    public void setDate(Date date) { this.mDate = date; }
+    public void setDate(Date date) {
+        this.mDate = date; }
 
     public Date getDate() { return mDate; }
 }

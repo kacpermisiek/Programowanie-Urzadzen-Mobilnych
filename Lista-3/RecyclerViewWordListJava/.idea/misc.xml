@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/kacpe/Downloads/Lab 6-1 - RecyclerViewWordListJava/RecyclerViewWordListJava/app/src/main/res/layout/activity_crime.xml" value="0.1" />
+        <entry key="..\:/Users/kacpe/Downloads/Lab 6-1 - RecyclerViewWordListJava/RecyclerViewWordListJava/app/src/main/res/layout/activity_crime.xml" value="0.33" />
         <entry key="..\:/Users/kacpe/Downloads/Lab 6-1 - RecyclerViewWordListJava/RecyclerViewWordListJava/app/src/main/res/layout/activity_main.xml" value="0.2608695652173913" />
         <entry key="..\:/Users/kacpe/Downloads/Lab 6-1 - RecyclerViewWordListJava/RecyclerViewWordListJava/app/src/main/res/layout/crime_list_item.xml" value="0.33" />
+        <entry key="..\:/Users/kacpe/Downloads/Lab 6-1 - RecyclerViewWordListJava/RecyclerViewWordListJava/app/src/main/res/layout/date_picker_dialog.xml" value="0.24351851851851852" />
+        <entry key="..\:/Users/kacpe/Downloads/Lab 6-1 - RecyclerViewWordListJava/RecyclerViewWordListJava/app/src/main/res/layout/fragment_date.xml" value="0.4678030303030303" />
         <entry key="..\:/Users/kacpe/Downloads/Lab 6-1 - RecyclerViewWordListJava/RecyclerViewWordListJava/app/src/main/res/layout/word_list_item.xml" value="0.2608695652173913" />
         <entry key="..\:/Users/rlewandkow/AndroidStudioProjects/PUM2021-2022/RecyclerViewWordListJava/app/src/main/res/layout/activity_main.xml" value="0.1859375" />
         <entry key="..\:/Users/rlewandkow/AndroidStudioProjects/PUM2021-2022/RecyclerViewWordListJava/app/src/main/res/layout/word_list_item.xml" value="0.2" />

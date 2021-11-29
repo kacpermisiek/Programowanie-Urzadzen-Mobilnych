@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+
 
 public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.CrimeViewHolder> {
 
@@ -18,7 +20,7 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.Crim
 
     public static final String EXTRA_MESSAGE = "pl.edu.uwr.pum.recyclerviewwordlistjava.MESSAGE";
 
-    public CrimeListAdapter(Context context){
+    public CrimeListAdapter(Context context) throws ParseException {
         inflater = LayoutInflater.from(context);
         crimeList = CrimeLab.get(context);
     }
@@ -27,6 +29,7 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.Crim
 
         public final TextView crimeText;
         private final TextView crimeImage;
+        private final TextView crimeDate;
         final CrimeListAdapter adapter;
         private final Context context;
 
@@ -35,6 +38,7 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.Crim
             context = itemView.getContext();
             crimeText = itemView.findViewById(R.id.crime);
             crimeImage = itemView.findViewById(R.id.solved_image);
+            crimeDate = itemView.findViewById(R.id.date);
             this.adapter = adapter;
             itemView.setOnClickListener(this);
         }
@@ -59,6 +63,7 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.Crim
     public void onBindViewHolder(@NonNull CrimeListAdapter.CrimeViewHolder holder, int position) {
         Crime currentCrime = crimeList.getCrime(position);
         holder.crimeText.setText(currentCrime.getTitle());
+        holder.crimeDate.setText(currentCrime.getDate().toString());
         if (currentCrime.getSolved()){
             holder.crimeImage.setVisibility(View.VISIBLE);
         }

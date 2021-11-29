@@ -9,8 +9,12 @@
     <string name="crime_date">01.01.2021</string>
 
     <string name="setTitle">Set Title</string>
-    <string name="setDate">Set Date</string>
+    <string name="setDate">01-01-2021</string>
     <string name="setSolved">Set Solved</string>
     <string name="deleteCrime">Delete this crime</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment">FRAGMENT</string>
+    <string name="set_date">SET DATE</string>
 
 </resources>
