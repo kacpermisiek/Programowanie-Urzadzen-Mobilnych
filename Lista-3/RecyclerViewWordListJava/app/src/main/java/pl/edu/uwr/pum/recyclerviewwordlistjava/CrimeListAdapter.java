@@ -10,9 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.ParseException;
-
-
 public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.CrimeViewHolder> {
 
     private final CrimeLab crimeList;
@@ -20,7 +17,7 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.Crim
 
     public static final String EXTRA_MESSAGE = "pl.edu.uwr.pum.recyclerviewwordlistjava.MESSAGE";
 
-    public CrimeListAdapter(Context context) throws ParseException {
+    public CrimeListAdapter(Context context) {
         inflater = LayoutInflater.from(context);
         crimeList = CrimeLab.get(context);
     }
@@ -31,7 +28,7 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.Crim
         private final TextView crimeImage;
         private final TextView crimeDate;
         final CrimeListAdapter adapter;
-        private final Context context;
+        public final Context context;
 
         public CrimeViewHolder(@NonNull View itemView, CrimeListAdapter adapter) {
             super(itemView);

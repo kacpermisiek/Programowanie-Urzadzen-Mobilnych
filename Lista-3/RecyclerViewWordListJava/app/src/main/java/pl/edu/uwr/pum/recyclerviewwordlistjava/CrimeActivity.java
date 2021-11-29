@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class CrimeActivity extends AppCompatActivity {
 
-    public int id;
+    public static int id;
     private EditText editTitle;
     public CrimeLab crimeList;
     public static Crime currentCrime;
@@ -52,7 +52,6 @@ public class CrimeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         currentCrime.setTitle(editTitle.getText().toString());
         currentCrime.setSolved(editSolved.isChecked());
-        //currentCrime.setDate();
         return super.onOptionsItemSelected(item);
     }
 

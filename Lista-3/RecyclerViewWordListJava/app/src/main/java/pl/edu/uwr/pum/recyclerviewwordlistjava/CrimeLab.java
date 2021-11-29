@@ -3,14 +3,13 @@ package pl.edu.uwr.pum.recyclerviewwordlistjava;
 import android.content.Context;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
 
-    private List<Crime> mCrimes;
+    public static List<Crime> mCrimes;
 
     public int getSize() { return mCrimes.size(); }
 
@@ -24,7 +23,6 @@ public class CrimeLab {
 
     private CrimeLab(Context context) {
         mCrimes = new ArrayList<>();
-        Calendar calendar = Calendar.getInstance();
         for (int i = 0; i < 50; i++){
             Crime crime = new Crime();
             crime.setTitle("Crime #"+i);
@@ -44,10 +42,18 @@ public class CrimeLab {
                 return crime;
             }
         }
-        return null;
+        Crime crime = new Crime();
+        crime.setTitle("New Crime");
+        crime.setSolved(false);
+        crime.setId(mCrimes.size());
+        crime.setDate(new Date());
+        mCrimes.add(crime);
+        return crime;
     }
 
     public void removeCrime(int id) { mCrimes.remove(id); }
+
+
 
 
 
