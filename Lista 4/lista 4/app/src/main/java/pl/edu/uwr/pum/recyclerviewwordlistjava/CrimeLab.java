@@ -28,6 +28,7 @@ public class CrimeLab {
             crime.setTitle("Crime #"+i);
             crime.setSolved(i%2==0);
             crime.setId(i);
+
             crime.setDate(new Date());
 
 

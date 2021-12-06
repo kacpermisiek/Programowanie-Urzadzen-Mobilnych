@@ -49,6 +49,19 @@
         android:text="@string/deleteCrime"
         android:onClick="delete_crime"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="First crime"
+        android:onClick="firstCrime"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Last crime"
+        android:onClick="lastCrime"/>
+
+
 
 
 </LinearLayout>
