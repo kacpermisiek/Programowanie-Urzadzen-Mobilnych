@@ -41,9 +41,9 @@ public class CrimeActivity extends AppCompatActivity {
         viewPager2 = findViewById(R.id.detail_view_pager);
 
         Intent intent = getIntent();
-
         int currentCrimeId = intent.getIntExtra(CrimeListAdapter.EXTRA_MESSAGE, 0);
-
+        crimeList = CrimeLab.get(this);
+        crimeList.getCrime(currentCrimeId);
         DetailPagerAdapter adapter = new DetailPagerAdapter(this);
         viewPager2.setAdapter(adapter);
 

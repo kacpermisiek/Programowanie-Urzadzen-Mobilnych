@@ -78,16 +78,17 @@ public class DetailPagerAdapter extends RecyclerView.Adapter<DetailPagerAdapter.
         holder.mTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (!currentCrime.getTitle().equals(String.valueOf(s)))
-                    currentCrime.setTitle(holder.mTitle.getText().toString());
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
             @Override
-            public void afterTextChanged(Editable s) { }
-        });
+            public void afterTextChanged(Editable s) {
+                if (!currentCrime.getTitle().equals(String.valueOf(s)))
+                    currentCrime.setTitle(holder.mTitle.getText().toString());
+        }});
 
         holder.mSolved.setOnClickListener(new View.OnClickListener() {
             @Override

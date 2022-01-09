@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TODO</string>
+    <string name="stringTitle">Task title</string>
+    <string name="stringDescription">Task description</string>
+    <string name="stringEstimateValue">Estimate value</string>
+    <string name="buttonAdd">add</string>
+</resources>
